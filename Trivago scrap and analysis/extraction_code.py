@@ -31,20 +31,32 @@ def function(city,sd_str,st,ac):
     if not os.path.exists("C:\\trivago_data"):
         os.makedirs("C:\\trivago_data")
     start_url = "https://www.trivago.in/"
-    driver.get(start_url)
+    try:
+        driver.get(start_url)
+    except:
+        time.sleep(1)
+        driver.get(start_url)
 
     time.sleep(0.5)
 
     #city=input("Enter location")
     #city="jaipur"
-    E1 = driver.find_element_by_xpath("//input[@type='search']").send_keys(city,Keys.ENTER)
+    E1 = ""
+    try:
+        E1 = driver.find_element_by_xpath("//input[@type='search']").send_keys(city,Keys.ENTER)
+    except:
+        E1 = driver.find_element_by_xpath("//input[@type='search']").send_keys(city,Keys.ENTER)
     a = ActionChains(driver)
     """cross=driver.find_element_by_xpath("//button[@class='df_overlay_close_wrap overlay__close']")
     a.click(cross).perform()"""
     time.sleep(3)
 
     a = ActionChains(driver)
-    search = driver.find_element_by_xpath("//button[@class='btn btn--primary btn--regular search-button js-search-button']")
+    search = ""
+    try:
+        search = driver.find_element_by_xpath("//button[@class='btn btn--primary btn--regular search-button js-search-button']")
+    except:
+        search = driver.find_element_by_xpath("//button[@class='btn btn--primary btn--regular search-button js-search-button']")
     a.click(search).perform()
     time.sleep(1)
 
@@ -62,45 +74,129 @@ def function(city,sd_str,st,ac):
     curr_url=curr_url.replace(curr_url[44:54],str(sd),1)
     curr_url=curr_url.replace(curr_url[75:85],str(ed),1)
 
-
-    driver.get(curr_url)
+    try:
+        driver.get(curr_url)
+    except:
+        time.sleep(3)
+        driver.get(curr_url)
     a = ActionChains(driver)
-    filters = driver.find_element_by_xpath("//li[@class='toolbar-list__item toolbar-list__item--more js-toolbar__item--more js-toolbar-more']")
+    filters = ""
+    try:
+        filters = driver.find_element_by_xpath("//li[@class='toolbar-list__item toolbar-list__item--more js-toolbar__item--more js-toolbar-more']")
+    except:
+        filters = driver.find_element_by_xpath("//li[@class='toolbar-list__item toolbar-list__item--more js-toolbar__item--more js-toolbar-more']")
     a.move_to_element(filters).perform()
 
     a = ActionChains(driver)
     #st=int(input("Enter stars"))
-    
-    if(st==1):
-        stars=driver.find_element_by_xpath("//button[@title='1-star hotels']")
-        a.click(stars).perform()
-    elif(st==2):
-        stars=driver.find_element_by_xpath("//button[@title='2-star hotels']")
-        a.click(stars).perform()
-    elif(st==3):
-        stars=driver.find_element_by_xpath("//button[@title='3-star hotels']")
-        a.click(stars).perform()
-    elif(st==4):
-        stars=driver.find_element_by_xpath("//button[@title='4-star hotels']")
-        a.click(stars).perform()
-    elif(st==5):
-        stars=driver.find_element_by_xpath("//button[@title='5-star hotels']")
-        a.click(stars).perform()
-    else:
-        print("Not available")
+    stars = ""
+    try:
+        if(st==1):
+            stars=driver.find_element_by_xpath("//button[@title='1-star hotels']")
+            a.click(stars).perform()
+        elif(st==2):
+            stars=driver.find_element_by_xpath("//button[@title='2-star hotels']")
+            a.click(stars).perform()
+        elif(st==3):
+            stars=driver.find_element_by_xpath("//button[@title='3-star hotels']")
+            a.click(stars).perform()
+        elif(st==4):
+            stars=driver.find_element_by_xpath("//button[@title='4-star hotels']")
+            a.click(stars).perform()
+        elif(st==5):
+            stars=driver.find_element_by_xpath("//button[@title='5-star hotels']")
+            a.click(stars).perform()
+        else:
+            print("Not available")
+    except:
+        if(st==1):
+            stars=driver.find_element_by_xpath("//button[@title='1-star hotels']")
+            a.click(stars).perform()
+        elif(st==2):
+            stars=driver.find_element_by_xpath("//button[@title='2-star hotels']")
+            a.click(stars).perform()
+        elif(st==3):
+            stars=driver.find_element_by_xpath("//button[@title='3-star hotels']")
+            a.click(stars).perform()
+        elif(st==4):
+            stars=driver.find_element_by_xpath("//button[@title='4-star hotels']")
+            a.click(stars).perform()
+        elif(st==5):
+            stars=driver.find_element_by_xpath("//button[@title='5-star hotels']")
+            a.click(stars).perform()
+        else:
+            st=0
+            print("Not available")
     time.sleep(4)
 
     a = ActionChains(driver)
     #ac=int(input("Enter 1 if you want ac"))
-    if(ac==1):
-        AC=driver.find_element_by_xpath("//input[@id='86/300-5']")
-        a.click(AC).perform()
-        a = ActionChains(driver)
-        try:
-            done=driver.find_element_by_xpath("//button[@id='filter-popover-done-button']")  
-            a.click(done).perform() 
-        except:
-            pass
+    AC = ""
+
+    try:
+        if(ac==1):
+            AC = ""
+            try:
+                AC=driver.find_element_by_xpath("//input[@id='86/300-5']")
+            except:
+                try:
+                    AC = driver.find_element_by_xpath("//input[@id='86/300-6']")
+                except:
+                    try:
+                        AC = driver.find_element_by_xpath("//input[@id='86/300-7']")
+                    except:
+                        try:
+                            AC = driver.find_element_by_xpath("//input[@id='86/300-4']")
+                        except:
+                            try:
+                                AC = driver.find_element_by_xpath("//input[@id='86/300-3']")
+                            except:
+                                try:
+                                    AC = driver.find_element_by_xpath("//input[@id='86/300-8']")
+                                except:
+                                    try:
+                                        AC = driver.find_element_by_xpath("//input[@id='86/300-9']")
+                                    except:
+                                        try:
+                                            AC = driver.find_element_by_xpath("//input[@id='86/300-10']")
+                                        except:
+                                            try:
+                                                AC = driver.find_element_by_xpath("//input[@id='86/300-1']")
+                                            except:
+                                                try:
+                                                    AC = driver.find_element_by_xpath("//input[@id='86/300-2']")
+                                                except:
+                                                    try:
+                                                        AC = driver.find_element_by_xpath("//input[@id='86/300-11']")
+                                                    except:
+                                                        try:
+                                                            AC = driver.find_element_by_xpath("//input[@id='86/300-12']")
+                                                        except:
+                                                            try:
+                                                                AC = driver.find_element_by_xpath("//input[@id='86/300-13']")
+                                                            except:
+                                                                try:
+                                                                    AC = driver.find_element_by_xpath("//input[@id='86/300-14']")
+                                                                except:
+                                                                    AC = driver.find_element_by_xpath("//input[@id='86/300-15']")
+                                        
+            a.click(AC).perform()
+            a = ActionChains(driver)
+            try:
+                done=driver.find_element_by_xpath("//button[@id='filter-popover-done-button']")  
+                a.click(done).perform() 
+            except:
+                pass
+    except:
+        if(ac==1):
+            AC=driver.find_element_by_xpath("//input[@id='86/300-5']")
+            a.click(AC).perform()
+            a = ActionChains(driver)
+            try:
+                done=driver.find_element_by_xpath("//button[@id='filter-popover-done-button']")  
+                a.click(done).perform() 
+            except:
+                pass
 
     Hotel_Name=[]
     Distance=[]
@@ -127,16 +223,43 @@ def function(city,sd_str,st,ac):
         n=True
         first_page_url=url
         while(n==True):
-            driver.get(url)
-            time.sleep(0.8)
+            try:
+                driver.get(url)
+            except:
+                time.sleep(1)
+                driver.get(url)
+            time.sleep(1)
             '''hotels = driver.find_elements_by_xpath("//span[@class='item-link name__copytext']")
             distances=driver.find_elements_by_xpath("//div[@class='item-link']")
             rates=driver.find_elements_by_xpath("//strong[@class='accommodation-list__price--3230a']")'''
-            hotels = driver.find_elements_by_xpath("//span[@data-qa='item-name']")
-            distances=driver.find_elements_by_xpath("//div[@class='item-link']")
-            rates=driver.find_elements_by_xpath("//strong[@data-qa='recommended-price']")
-            booking_sites=driver.find_elements_by_xpath("//span[@data-qa='recommended-price-partner']")
-            print(len(hotels),len(distances),len(rates),len(booking_sites))
+            hotels = ""
+            distances = ""
+            rates = ""
+            booking_sites = ""
+            try:
+                hotels = driver.find_elements_by_xpath("//span[@data-qa='item-name']")
+                distances=driver.find_elements_by_xpath("//div[@class='item-link']")
+                rates=driver.find_elements_by_xpath("//strong[@data-qa='recommended-price']")
+                booking_sites=driver.find_elements_by_xpath("//span[@data-qa='recommended-price-partner']")
+            except:
+                driver.get(url)
+                time.sleep(1)
+                hotels = driver.find_elements_by_xpath("//span[@data-qa='item-name']")
+                distances=driver.find_elements_by_xpath("//div[@class='item-link']")
+                rates=driver.find_elements_by_xpath("//strong[@data-qa='recommended-price']")
+                booking_sites=driver.find_elements_by_xpath("//span[@data-qa='recommended-price-partner']")
+            p,q,r,s=len(hotels),len(distances),len(rates),len(booking_sites)
+            set1={p,q,r,s}
+            if len(set1)!=1 or set1=={0} or p<7:
+                driver.get(url)
+                time.sleep(3.5)
+                hotels = driver.find_elements_by_xpath("//span[@data-qa='item-name']")
+                distances=driver.find_elements_by_xpath("//div[@class='item-link']")
+                rates=driver.find_elements_by_xpath("//strong[@data-qa='recommended-price']")
+                booking_sites=driver.find_elements_by_xpath("//span[@data-qa='recommended-price-partner']")
+
+                
+            print(len(hotels),len(distances),len(rates),len(booking_sites), sd)
 
             for i,j,k,l in zip(hotels,distances,rates,booking_sites):
                 #print("Hotel:"+ i.text,"\tDistance:"+j.text,"\tRate:"+k.text)
@@ -170,13 +293,23 @@ def function(city,sd_str,st,ac):
                 checkout.append(ed)
 
             a = ActionChains(driver)
-            n=check_exists_by_xpath("//button[@class='btn btn--pagination btn--small btn--page-arrow btn--next']")
-            if(n==True):
-                next=driver.find_element_by_xpath("//button[@class='btn btn--pagination btn--small btn--page-arrow btn--next']")
-                a.click(next).perform()
-                url=driver.current_url
-            else:
-                url=first_page_url
+            n = ""
+            try:
+                n=check_exists_by_xpath("//button[@class='btn btn--pagination btn--small btn--page-arrow btn--next']")
+                if(n==True):
+                    next1=driver.find_element_by_xpath("//button[@class='btn btn--pagination btn--small btn--page-arrow btn--next']")
+                    a.click(next1).perform()
+                    url=driver.current_url
+                else:
+                    url=first_page_url
+            except:
+                n=check_exists_by_xpath("//button[@class='btn btn--pagination btn--small btn--page-arrow btn--next']")
+                if(n==True):
+                    next1=driver.find_element_by_xpath("//button[@class='btn btn--pagination btn--small btn--page-arrow btn--next']")
+                    a.click(next1).perform()
+                    url=driver.current_url
+                else:
+                    url=first_page_url
 
         sd=ed
         #ed=ed+timedelta(days)
@@ -184,6 +317,7 @@ def function(city,sd_str,st,ac):
         #url=driver.current_url
         url=url.replace(url[44:54],str(sd),1)
         url=rreplace(url, url[75:85], str(ed))
+    print("\n\nScraping Completed...\nSaving to file...\n")
     df=pd.DataFrame({"Hotel_Name":Hotel_Name,"Distance_from_city_centre":Distance_in_km,"Rate":Rate,"checkin":checkin,"checkout":checkout,"booking_site":booking_site}) 
     #print(df.info())
     df=df.dropna().reset_index()
@@ -191,3 +325,6 @@ def function(city,sd_str,st,ac):
     print(str(st),type(str(st)))
     df.to_csv("C:\\trivago_data\\"+city+str(st)+"star"+".csv")
     #df.to_csv(city+".csv")
+
+    #print("File saved at location : "+city+".csv")
+    print("File saved at location : C:\\trivago_data\\"+city+str(st)+"star"+".csv")
